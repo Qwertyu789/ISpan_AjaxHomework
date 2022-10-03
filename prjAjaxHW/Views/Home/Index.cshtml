@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section Styles{
+    <style>
+        .div2 {
+            margin-top: 10px;
+            border: solid 1px red;
+            text-align: start;
+            padding: 10px;
+            color: red;
+        }
+    </style>
+}
+<div id="div1">
+</div>
+
+@section Scripts{
+    <script src="~/js/travel.js"></script>
+    <script>
+    const docFrag = document.createDocumentFragment();
+    const theUl = document.querySelector("#div1");
+    for (let i = 0; i < DATAS.length; i++) {
+        const { Name, Add, Opentime, Ticketinfo, Tel } = DATAS[i];
+        //const txt = document.createTextNode(`地點：${Name}\n地址：${Add}\n時間：${Opentime}\n票價：${Ticketinfo}\n聯絡電話：${Tel}`);
+        const ele = document.createElement("div");
+        ele.appendChild(document.createTextNode(`地點：${Name}`));
+        ele.appendChild(document.createElement(`br`));
+        ele.appendChild(document.createTextNode(`地址：${Add}`));
+        ele.appendChild(document.createElement(`br`));
+        ele.appendChild(document.createTextNode(`時間：${Opentime}`));
+        ele.appendChild(document.createElement(`br`));
+        ele.appendChild(document.createTextNode(`票價：${Ticketinfo}`));
+        ele.appendChild(document.createElement(`br`));
+        ele.appendChild(document.createTextNode(`聯絡電話：${Tel}`));
+        ele.appendChild(document.createElement(`br`));
+        ele.className = "div2";
+        docFrag.appendChild(ele);
+    }
+    theUl.appendChild(docFrag);
+    </script>
+}
+
