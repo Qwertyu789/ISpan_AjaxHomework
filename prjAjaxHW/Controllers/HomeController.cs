@@ -33,5 +33,10 @@ namespace prjAjaxHW.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult Register(Member member) //接收資料
+        {
+            return Content(member.Name, "text/plain");
+        }
+
     }
 }
