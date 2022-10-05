@@ -8,7 +8,7 @@
     <div class="col-3">
     </div>
     <div class="col-6">
-        <form name="userInfo" method="post" enctype="multipart/form-data" action="~/Home/Register">
+        <form name="userInfo" method="post" enctype="multipart/form-data" action="@Url.Content("~/Home/Register")">
             @* name為必須 且表單名稱應與資料表欄位名稱及類別屬性名稱一致*@
             <div class="form-group">
                 <label for="InputName">姓名</label>
@@ -46,17 +46,15 @@
         const idmsg = document.querySelector("#idcheck");
 
     btn.addEventListener("click", evt => {
-        const xhr = new XMLHttpRequest();
+        
         evt.preventDefault();
         const formdata = new FormData(document.userInfo);
-
-        xhr.addEventListener("load", () => {
-            const data = xhr.responseText;
-            divmsg.textContent = data;
+        fetch(document.userInfo.action, {
+            method: "POST",
+            body: formdata,
         })
-
-        xhr.open("POST", document.userInfo.action);
-        xhr.send(formdata);
+            .then(response => response.text())
+            .then(data => divmsg.textContent = data);
     })
 
     iname.addEventListener("blur", evt => {

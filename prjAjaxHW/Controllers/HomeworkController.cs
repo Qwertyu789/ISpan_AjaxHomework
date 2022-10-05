@@ -24,11 +24,15 @@ namespace prjAjaxHW.Controllers
         }
         public IActionResult CheckName(string Name)
         {
-            string res = "此名稱可以使用！";
-            var a = _context.Members.Where(i => i.Name == Name).FirstOrDefault();
-            if (a != null)
+            string res = "名字不可為空白！";
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                res = "此名稱已有人使用！";
+                var a = _context.Members.Where(i => i.Name == Name).FirstOrDefault();
+                if (a != null)
+                    res = "此名稱已有人使用！";
+                else
+                    res = "此名稱可以使用！";
+
             }
             return Content(res, "text/plain", System.Text.Encoding.UTF8);
         }
