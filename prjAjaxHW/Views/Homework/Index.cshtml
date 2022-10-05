@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>旅遊景點</h1>
+
+<div class="card-columns" id="col1">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+</div>
+@section Scripts{
+<script src="~/js/travel.js"></script>
+<script>
+    const theUl = document.querySelector("#col1");
+    //迴圈可寫 
+    //1. for(let item in DATAS)
+    //2. for(let item of )
+    //陣列可寫
+    //DATAS.map()
+    let htmlDatas = DATAS.map(data => {
+        let { Name, Toldescribe, Changetime, Add, Ticketinfo } = data;
+        return (`
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${Name}</h5>
+                    <p class="card-text">${Toldescribe}</p>
+                    <p class="card-text"><small class="text-muted">${Add}</small></p>
+                    <p class="card-text"><small class="text-muted">${Ticketinfo}</small></p>
+                    <p class="card-text"><small class="text-muted">${Changetime}</small></p>
+                </div>
+            </div>
+        `)
+    })
+    theUl.innerHTML = htmlDatas.join("");
+</script>
+}

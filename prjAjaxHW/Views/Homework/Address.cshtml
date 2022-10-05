@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "Address";
+}
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h1>道路地址</h1>
+        <select id="select1" class="form-select form-select-lg mb-3" aria-label=".form-select-lg"></select>
+        <br />
+        <select id="select2" class="form-select mb-2"></select>
+        <br />
+        <select id="select3" class="form-select form-select-sm mb-1"></select>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+@section Scripts{
+    <script>
+        const selCity = document.querySelector("#select1");
+        const selSite = document.querySelector("#select2");
+        const selRoad = document.querySelector("#select3");
+        LoadCities();
+
+        selCity.addEventListener("change",  () => {
+            selSite.options.length = 0;
+            selRoad.options.length = 0;
+            LoadSites();            
+        })
+        selSite.addEventListener("change",  () => {
+            selRoad.options.length = 0;
+            LoadRoads();
+        })
+
+        async function LoadCities() {
+            let res = await fetch("@Url.Content("~/Homework/City")");
+            let datas = await res.json();
+            datas.forEach(item => {
+                let opt = new Option(item, item);
+                selCity.options.add(opt);
+            })
+            LoadSites();
+        }
+        async function LoadSites() {
+            let res = await fetch("@Url.Content("~/Homework/Site")" + `?city=${selCity.options[selCity.selectedIndex].value}`);
+            let datas = await res.json();
+            datas.forEach(item => {
+                let opt = new Option(item, item);
+                selSite.options.add(opt);
+            })
+            LoadRoads()
+        }
+        async function LoadRoads() {
+            let res = await fetch("@Url.Content("~/Homework/Road")" + `?site=${selSite.options[selSite.selectedIndex].value}`);
+            let datas = await res.json();
+            datas.forEach(item => {
+                let opt = new Option(item, item);
+                selRoad.options.add(opt);
+            })
+        }
+    </script>
+}
