@@ -20,6 +20,10 @@
         const selCity = document.querySelector("#select1");
         const selSite = document.querySelector("#select2");
         const selRoad = document.querySelector("#select3");
+
+        //(async function () {
+        //    await LoadCities();
+        //}());
         LoadCities();
 
         selCity.addEventListener("change",  () => {
@@ -39,7 +43,8 @@
                 let opt = new Option(item, item);
                 selCity.options.add(opt);
             })
-            LoadSites();
+            //addoption(datas, selCity);
+            await LoadSites();
         }
         async function LoadSites() {
             let res = await fetch("@Url.Content("~/Homework/Site")" + `?city=${selCity.options[selCity.selectedIndex].value}`);
@@ -48,7 +53,8 @@
                 let opt = new Option(item, item);
                 selSite.options.add(opt);
             })
-            LoadRoads()
+            //addoption(datas, selSite);
+            await LoadRoads();
         }
         async function LoadRoads() {
             let res = await fetch("@Url.Content("~/Homework/Road")" + `?site=${selSite.options[selSite.selectedIndex].value}`);
@@ -57,6 +63,13 @@
                 let opt = new Option(item, item);
                 selRoad.options.add(opt);
             })
+            //addoption(datas, selRoad);
         }
+
+        //function addoption(data,sel) {
+        //    data.map(item => { 
+        //        let opt = new Option(item.item)
+        //        sel.options.add(opt);
+        //    })
     </script>
 }

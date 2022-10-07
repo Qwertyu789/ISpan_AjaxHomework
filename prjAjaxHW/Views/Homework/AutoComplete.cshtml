@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "AutoComplete";
+}
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h1>AutoComplete</h1>
+        <input type="text" class="inputText" id="inputText" />
+        <div class="list-group listheader" id="list">
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+@section Scripts{ 
+<script>
+    const data = document.querySelector("#inputText");
+    const list = document.querySelector("#list");
+
+    list.style.display = "none";
+    data.addEventListener("input", async () => {        
+        list.style.display = "block";
+        const keyword = data.value;
+        let response = await fetch("@Url.Content("~/Homework/keyword")" + `?keyword=${keyword}`)
+        //console.log(response)
+        let res = await response.json();
+        //console.log(res)
+        let htmlcontext = res.map(datas => {
+            return (
+                `<button type="button" class="list-group-item list-group-item-action active" onclick="getRead(event)">${datas}</button>`
+            );
+        })
+        list.innerHTML = htmlcontext.join("");
+    })
+
+    function getRead(evt) {
+        data.value = evt.target.textContent;
+        list.style.display = "none";
+    }
+</script>
+}

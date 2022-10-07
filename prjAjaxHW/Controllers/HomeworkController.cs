@@ -10,9 +10,11 @@ namespace prjAjaxHW.Controllers
     public class HomeworkController : Controller
     {
         private readonly DemoContext _context;
-        public HomeworkController(DemoContext context)
+        private readonly NorthwindContext _db;
+        public HomeworkController(DemoContext context, NorthwindContext db)
         {
             _context = context;
+            _db = db;
         }
         public IActionResult Index()
         {
@@ -54,6 +56,15 @@ namespace prjAjaxHW.Controllers
         {
             var roads = _context.Addresses.Where(a => a.SiteId == site).Select(a => a.Road).Distinct();
             return Json(roads);
+        }
+        public IActionResult AutoComplete()
+        {
+            return View();
+        }
+        public IActionResult keyword(string keyword)
+        {
+            var res = _db.Products.Where(p => p.ProductName.ToUpper().Contains(keyword)).Select(p => p.ProductName);
+            return Json(res);
         }
     }
 }

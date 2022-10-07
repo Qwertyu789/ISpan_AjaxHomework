@@ -7254,11 +7254,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Student\\source\\repos\\prjAjaxHW\\prjAjaxHW\\prjAjaxHW.csproj",
+      "projectUniqueName": "C:\\Users\\Student\\source\\repos\\RestfulAPI_Ajax\\prjAjaxHW\\prjAjaxHW\\prjAjaxHW.csproj",
       "projectName": "prjAjaxHW",
-      "projectPath": "C:\\Users\\Student\\source\\repos\\prjAjaxHW\\prjAjaxHW\\prjAjaxHW.csproj",
+      "projectPath": "C:\\Users\\Student\\source\\repos\\RestfulAPI_Ajax\\prjAjaxHW\\prjAjaxHW\\prjAjaxHW.csproj",
       "packagesPath": "C:\\Users\\Student\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Student\\source\\repos\\prjAjaxHW\\prjAjaxHW\\obj\\",
+      "outputPath": "C:\\Users\\Student\\source\\repos\\RestfulAPI_Ajax\\prjAjaxHW\\prjAjaxHW\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
